@@ -1,0 +1,20 @@
+#Login Azure
+az login
+
+#Informe o nome dos recursos a serem criados
+$rgstate = "rg-terraform-SA"
+$sastate = "tfstateestudos"
+$containerstate = "tfstateestudosdev"
+
+#Cria grupo de recursos
+az group create --name $rgstate --location eastus2
+
+#Cria Storage Account
+az storage account create --resource-group $rgstate --name $sastate --sku Standard_LRS --encryption-services blob
+
+#Cria um container dentro do SA
+az storage container create --name $containerstate --account-name $sastate
+
+#Consulta e armazena a chave de acesso na variável de ambiente
+$ACCOUNT_KEY=$(az storage account keys list --resource-group $rgstate --account-name $sastate --query '[0].value' -o tsv)
+$env:ARM_ACCESS_KEY=$ACCOUNT_KEY
