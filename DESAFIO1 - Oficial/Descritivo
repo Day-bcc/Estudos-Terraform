@@ -1,0 +1,8 @@
+Desafio 1:
+Laboratório:
+Introdução ao Terraform
+Criação da estrutura básica do projeto Terraform (main/variables/tfvars)
+Demonstrar os comandos básicos do Terraform
+(init/plan/apply/destroy)
+Criar um recurso
+Storage Account ou um banco de dados(PostegreSQL/MariaDB)
