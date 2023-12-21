@@ -1,0 +1,26 @@
+##Terraform AzAPI
+Introduction to Terraform AzAPI
+Using Terraform AzAPI & deploying
+
+O provedor AzAPI é uma camada muito fina sobre as APIs REST do Azure ARM. Este provedor complementa o provedor AzureRM ao permitir o gerenciamento de recursos do 
+Azure que ainda não são ou podem nunca ter suporte no provedor AzureRM, como visualização pública/privada serviços e recursos.
+
+##Benefícios de usar o provedor AzAPI
+
+Suporta todos os serviços do Azure:
+Serviços e recursos de visualização privada
+Serviços e recursos de visualização pública
+Todas as versões da API
+Fidelidade total do arquivo de estado Terraform
+Propriedades e valores são salvos no estado
+Sem dependência do Swagger
+Autenticação comum e consistente do Azure
+
+Desafio 04
+
+#Criar um recurso
+  Criar um RG utilizando o "AzAPI"
+#Alterar a propriedade de um recurso existente
+  Desabilitar o acesso público de uma Storage Account utilizando utilizando o provider "AzAPI"
+#Gerenciar um recurso
+  Desligar uma VM utlizando o provider "AzAPI"
