@@ -126,13 +126,14 @@ resource "azapi_resource" "virtualMachine" {
 }
 
 #Desligando a VM com AzApi
-resource "azapi_resource_action" "stop" {
-  type                   = "Microsoft.Compute/virtualMachines@2022-11-01"
-  resource_id            = azapi_resource.virtualMachine.id
-  action                 = "stop"
-  response_export_values = ["*"]
-
-  count = var.enabled ? 0 : 1
+#Desligando a VM com AzApi
+resource "azapi_resource_action" "Power_Off_vm" {
+  resource_id = azapi_resource.virtualMachine.id
+  action      = "poweroff"
+  method      = "POST"
+  type        = "Microsoft.Compute/virtualMachines@2020-06-01"
+  
+  depends_on  = [azapi_resource.virtualMachine]
 }
 
 #Criar o Storage Account com AzAPI
