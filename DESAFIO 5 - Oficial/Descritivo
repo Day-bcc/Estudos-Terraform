@@ -1,0 +1,48 @@
+Laboratório:
+Spokes - Ambiente de HML deve se comunicar com Dev
+Banco de Dados: SQL (porta 1433) ou MySQL (porta 3389)
+Desabilitar acesso público ao banco de dados e habilitar o private link
+Spoke - Ambiente de PRD
+O ambiente de PRD não pode se comunicar com os ambientes de HML e DEV
+Provisionar um storage account com um file share. Desabilitar acesso público e habilitar o private link
+HUB
+A VM do Hub deve se comunicar com todos os recursos, File Share de PRD na porta 445, VM de HML na porta 22 (Linux) ou 3389 (Windows) e no banco de dados escolhido
+ 
+Obs.: Os NSGs devem conter as regras para permitir apenas as comunicações definidas acima.
+
+HUB:
+rg-hub
+vm hub-001
+vnet-hub
+snet-hub-001
+NSG-hub-001
+Criar peering do hub para os 3 ambientes: DEV, HML e PRD
+A VM do Hub deve se comunicar com todos os recursos, File Share de PRD na porta 445, VM de HML na porta 22 (Linux) ou 3389 (Windows) e no banco de dados escolhido
+
+DEV:
+rg-database
+sql-db-001
+vnet-spoke-dev
+snet-db-001
+nsg-dev-001
+criar um private link e desabilitar o acesso externo do BD, o acesso será pela vm de hub ou HML como teste
+Criar um peering do ambiente de DEV para HML
+Criar um peering do ambiente de DEV para HUB
+
+HML:
+rg-app
+vm-app-001
+vnet-spoke-hml
+snet-app-001
+nsg-hml-001
+Criar um peering do ambiente de HML para DEV
+Criar um peering do ambiente de HML para HUB
+
+PRD:
+rg-data
+storage-001 com file share
+vnet-spoke-prd
+snet-data-001
+nsg-prd-001
+criar um private link e desabilitar o acesso externo do storage account, o acesso será pela vm de hub como teste
+Criar um peering do ambiente de PRD para HUB
